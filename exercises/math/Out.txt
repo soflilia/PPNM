@@ -1,0 +1,27 @@
+squareroot of 2: 1.4142135623731
+checking if 2 = 2
+2 to the power of 1/5: 1.14869835499704
+checking if 2 = 2
+e to the power of pi: 23.1406926327793
+checking if 23.1406926327793 = 23.1406926
+pi to the power of e: 22.459157718361
+checking if 22.459157718361 = 22.4591577
+fgamma[1] = 0.999999989064903 should equal 0! = 1 
+fgamma[2] = 0.999999989064903 should equal 1! = 1 
+fgamma[3] = 1.99999997812981 should equal 2! = 2 
+fgamma[4] = 5.99999993438942 should equal 3! = 6 
+fgamma[5] = 23.9999997375577 should equal 4! = 24 
+fgamma[6] = 119.999998687788 should equal 5! = 120 
+fgamma[7] = 719.99999212673 should equal 6! = 720 
+fgamma[8] = 5039.99994488711 should equal 7! = 5040 
+fgamma[9] = 40319.9995590969 should equal 8! = 40320 
+It is often easier to calculate the logarithm of the gammas instead: 
+lngamma[1] = -1.09350976051914E-08
+lngamma[2] = -1.09350976051914E-08
+lngamma[3] = 0.693147169624848
+lngamma[4] = 1.79175945829296
+lngamma[5] = 3.17805381941285
+lngamma[6] = 4.78749173184695
+lngamma[7] = 6.579251201075
+lngamma[8] = 8.52516135013032
+lngamma[9] = 10.6046028918102
