@@ -1,0 +1,26 @@
+Addition tests: 
+passed 
+passed 
+passed 
+Subbtraction tests: 
+passed 
+passed 
+passed 
+Multiplication test: 
+passed 
+passed 
+passed 
+dot product test: 
+passed 
+cross product test: 
+passed 
+passed 
+passed 
+passed 
+norm test
+passed 
+passed 
+approximation test
+passed 
+passed 
+passed 

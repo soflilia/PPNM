@@ -1,0 +1,14 @@
+my max int = 2147483647 
+which should equal 2147483647 
+my min int = -2147483648 
+ which should equal -2147483648 
+my epsilon in double is = 2.22044604925031E-16 
+which should equal 2.22044604925031E-16 
+my epsilon in float is = 1.192093E-07 
+which should equal 1.19209289550781E-07 
+so I am happy 
+so is 1+tiny+tiny = tiny+tiny+1? False
+is 1+tiny+tiny > 1 ? False 
+tiny+tiny+1 > 1  ? True
+which means when you add something tiny to something that is big, it does not register 
+so is d1 = d2? My function says approx(d1,d2) = True 
