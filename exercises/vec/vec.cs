@@ -27,12 +27,12 @@ public class vec{
 	{return v.x*w.x+v.y*w.y+v.z*w.z;}
 
     // cross product
-    public static vec cross(vec v,vec w) /* to be called as vec.dot(u,v) */
+    public static vec cross(vec v,vec w) /* to be called as vec.cross(u,v) */
 	{return new vec(v.y*w.z-v.z*w.y, v.z*w.x-v.x*w.z, v.x*w.y-v.y*w.x);
     }
 
     //norm 
-    public static double norm(vec v) /* to be called as u.dot(v) */
+    public static double norm(vec v) /* to be called as vec.norm(v) */
 	{return System.Math.Pow(System.Math.Pow(v.x,2)+System.Math.Pow(v.y,2)+System.Math.Pow(v.z,2),0.5);
     }
 
