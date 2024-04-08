@@ -1,6 +1,5 @@
 mat_lib = ../presets
 QR_lib = ../hw-linear-equations
-GNUVAR= "a = ('Out-main.txt')" 
 
 # $@ er target, dvs det før : i din lille kode
 
@@ -12,12 +11,9 @@ MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 Out-%.txt: %.exe
 	mono $< >$@
 
-half_life.svg : plotting.gpi Out-main.txt
-	gnuplot -e $(GNUVAR) plotting.gpi
+main.exe : main.cs matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
 
-main.exe : main.cs matrixlib.dll vector.dll linear.dll lsfit.dll; $(MKEXE)
-
-lsfit.dll: lsfit.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
+jacobi.dll: jacobi.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
 linear.dll : $(QR_lib)/main.cs matrixlib.dll vector.dll; $(MKLIB)
 

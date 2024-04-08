@@ -37,10 +37,13 @@ public static class QRGS{
     if(vector.approx(b1,b0)){Console.Write("passed...\n");}
     else{Console.Write("failed..\n");}
 
-    // opg i kernefysik
-    matrix H = new matrix("3,10;10,5");
-    (matrix en, matrix trian) = decomp(H);
-    trian.print("Her er matricen:");
+    // invers test
+    Console.Write("Testing if inverse function works. \n");
+    matrix N1 = random_square();
+    (matrix Q_, matrix R_) = decomp(N1);
+    if(inverse_test(N1, inverse(Q_,R_))){Console.Write("passed...\n");}
+    else{Console.Write("failed...\n");}
+    
 
     } // Main
 
@@ -83,6 +86,14 @@ public static class QRGS{
         }
         return true;
     }
+    private static bool inverse_test(matrix A, matrix inverse){
+        matrix ident = A*inverse;
+        if(!ident.approx(matrix.id(A.size1))){
+            ident.print();
+            return false;
+        }
+        return true;
+    }
 // classes here
     public static matrix random_matrix(){
         Random random = new Random();
@@ -110,8 +121,8 @@ public static class QRGS{
         }
     public static matrix random_square(){
         Random random = new Random();
-        // creating m and n with n > m:
-        int cols = random.Next(1,50);
+        // creating m and n with n = m:
+        int cols = random.Next(2,50);
         int rows = cols;
         List<vector> data = new List<vector>();
         for(int j=0 ; j<cols ; j++){
@@ -131,6 +142,20 @@ public static class QRGS{
         }
         rnd1.data = data1 ;
         return rnd1;
+        }
+
+    public static matrix random_symmetric(){
+        Random random = new Random();
+        // creating m and n with n = m:
+        int cols = random.Next(5,7);
+        int rows = cols;
+        matrix X = new matrix(rows,cols);
+        for(int i =0 ; i<cols; i++){
+            for(int j=i; j< rows; j++){
+                X[i,j] = X[j,i] = random.NextDouble()*20-10;
+                }
+            }
+            return X;
         }
 
     public static matrix random_triangular(){
@@ -196,6 +221,23 @@ public static class QRGS{
         }
         return (Q,R);
     }
+
+    public static matrix inverse(matrix Q, matrix R){
+        int m = R.size1;
+        matrix QT = Q.T;
+        matrix A_inv = new matrix(m,m);
+        for(int cols = 0 ; cols <m ; cols++){
+            vector column_A = new vector(m);
+            for(int i = m-1; i>=0; i--){
+                double sub = 0;
+                for(int k = i+1; k<=m-1; k++){
+                    sub += R[i,k]*column_A[k];}
+                column_A[i]= (QT[i,cols]-sub) / R[i,i];
+                A_inv[i,cols] = column_A[i];
+            }
+        }
+        return A_inv;
+    }
     
     public static vector solve(matrix Q, matrix R, vector b){
         int m = R.size1;
@@ -203,8 +245,8 @@ public static class QRGS{
         vector c = Q.T*b;
         vector x1 = new vector(m);
         //back substitution
-        x1[m-1] = c[m-1]*(1/(R[m-1,m-1]));
-        for (int i=m-2; i>=0; i--){
+        //x1[m-1] = c[m-1]*(1/(R[m-1,m-1]));
+        for (int i=m-1; i>=0; i--){
             double sub = 0;
             for (int k = i+1; k<=m-1; k++){
                 sub += R[i,k]*x1[k];}
@@ -213,8 +255,4 @@ public static class QRGS{
         }
         return x1;
     } // solve closed 
-    public static int inverse(matrix R, matrix Q){
-        matrix A = R*Q;
-        return 0;
-   }
 } //class QRGS

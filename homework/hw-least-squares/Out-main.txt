@@ -1,0 +1,9 @@
+4.95866486264899
+0.170624049509978
+0.0268235931134919
+0.00341593641227282
+so our half time from fit is: 4.06242368851649 days
+Google says experimental value is: 3.631 days
+Our result is thus 0.118816769076424% larger
+uncertainty: 0.08133074463733 days
+which is not within range of the experimental value.
