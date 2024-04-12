@@ -25,7 +25,7 @@ slow_f(t) = exp(c1+c1_unc)*exp(-(c2-c2_unc)*t)
 
 plot\
     y(x) with lines title 'Decay function',\
-    quick_f_f(x) with lines title 'Upper limit' ,\
+    quick_f(x) with lines title 'Upper limit' ,\
     slow_f(x) with lines title 'Lower limit' ,\
     "<paste time.txt ys.txt dy.txt" title 'data points' w err;\
 

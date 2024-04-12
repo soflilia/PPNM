@@ -1,0 +1,16 @@
+set terminal svg background "white"
+set out "eigen_val.svg"
+set xlabel "dr" 
+set ylabel "Energy"
+set grid
+set title "Groundstate energy at rmax=10 for different dr-steps"
+
+
+# laver en funktion der klipper output filen i stykker og giver os hvad vi har brug for
+extract_data(filename, index) = system(sprintf("awk 'NR==%d' %s", index, filename))
+
+dr = "dr"
+e1 = "e1"
+
+plot\
+    "<paste output_dr.txt output_e1.txt"

@@ -7,14 +7,17 @@ public class EVD{
     public vector w;
     public matrix V;
     public matrix D;
+    // ground means lowest eigenvalue and corresponding eigenvector
+    public vector ground_eigenvec;
+    public double ground_value;
     public static void Jtimes(matrix A, int p, int q, double theta){
         int n = A.size1;
         double c=Math.Cos(theta),s=Math.Sin(theta);
-        for(int i = 0; i<n-1; i++){
+        for(int i = 0; i<n; i++){
             double api = A[p,i];
             double aqi = A[q,i];
-            A[p,i] = api*c + aqi*s;
-            A[q,i] = -api*s+ api*c;
+            A[p,i] = c*api+s*aqi;
+            A[q,i] = -s*api+ c*aqi;
         }
     }
     public static void timesJ(matrix A, int p, int q, double theta){
@@ -23,7 +26,7 @@ public class EVD{
             double ajp = A[j,p];
             double ajq = A[j,q];
             A[j,p] = ajp*c - ajq*s;
-            A[j,q] = ajp*s+ ajp*c;
+            A[j,q] = ajp*s+ ajq*c;
         } 
     }
     public static (matrix,matrix) cyclic(matrix A, matrix V){
@@ -55,16 +58,26 @@ public class EVD{
         return (A,V);
         }
     
-    public EVD(matrix M){
-	    matrix A = M.copy();
-        w = new vector(M.size1);
-	    V = matrix.id(M.size1);
+    public EVD(matrix A){
+        w = new vector(A.size1);
+	    V = matrix.id(A.size1);
         cyclic(A,V);
-        matrix D = V.T * A * V;
+        this.D = V.T * A * V;
         for(int i=0; i< D.size1; i++){
-            w[i] = D[i,i];
+            this.w[i] = D[i,i];
+            }
+        //finding groundstate eigenvalue and eigenvector
+        
+        this.ground_value= this.w[0];
+        this.ground_eigenvec = this.V[0];
+        for(int i=1; i<this.w.size; i++){
+            if(this.w[i]<this.ground_value){
+                this.ground_value = this.w[i];
+                this.ground_eigenvec = this.V[i];
                 }
             }
+        }
 	/* run Jacobi rotations on A and update V */
 	/* make matrix D which is diagonal with eigenvalues and w which is the vectors that make up D*/
 	}
+

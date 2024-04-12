@@ -1,5 +1,7 @@
 mat_lib = ../presets
 QR_lib = ../hw-linear-equations
+GNUVAR= "dr = ('output_dr.txt')" 
+GNUVAR2= "e1 = ('output_e1.txt')" 
 
 # $@ er target, dvs det før : i din lille kode
 
@@ -7,6 +9,15 @@ CODE = $(filter %.cs,$^)
 LIBS = $(addprefix -reference:,$(filter %.dll,$^))
 MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE) 
 MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
+
+output_e1.txt: main.exe
+	mono $< >$@
+
+output_dr.txt: main.exe
+	mono $< >$@
+
+eigenval.svg : eigenplot.gpi output_dr.txt output_e1.txt
+	gnuplot -e $(GNUVAR) $(GNUVAR1) eigenplot.gpi
 
 Out-%.txt: %.exe
 	mono $< >$@
