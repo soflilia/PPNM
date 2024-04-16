@@ -3,6 +3,9 @@ QR_lib = ../hw-linear-equations
 GNUVAR= "dr = ('output_dr.txt')" 
 GNUVAR2= "e1 = ('output_e1.txt')" 
 
+GNUVAR3 = "rmax = ('output_rmax.txt')"
+GNUVAR4 = "e2 = ('output_e2.txt')"
+
 # $@ er target, dvs det før : i din lille kode
 
 CODE = $(filter %.cs,$^)
@@ -17,7 +20,15 @@ output_dr.txt: main.exe
 	mono $< >$@
 
 eigenval.svg : eigenplot.gpi output_dr.txt output_e1.txt
-	gnuplot -e $(GNUVAR) $(GNUVAR1) eigenplot.gpi
+	gnuplot -e "load 'eigenplot.gpi'"
+
+
+eigenval2.svg : eigenplot2.gpi output_rmax.txt output_e2.txt
+	@echo "Building eigenval2.svg..."
+	gnuplot -e "load 'eigenplot2.gpi'"
+
+wavefunctions.svg : wavefunctions.gpi
+	gnuplot -e "load 'wavefunctions.gpi'"
 
 Out-%.txt: %.exe
 	mono $< >$@

@@ -83,35 +83,80 @@ class MainEVD{
         double [] energies = results1.Item2;
 
         //rmax som funktion af dr:
-        var results2 = graph_dr(0.3);
+        //NOGET ER GALT HER, DE KONVERGERER FOR STORE DR IKKE SMÅ???
+        var results2 = graph_rmax(0.3);
         double [] rmaxs = results2.Item1;
         double [] energies2 = results2.Item2;
-        
-        Console.Write($"HVOR ER MINE RESULTATER? = {drs[0]}\n");
+
         // Specify the path to the output files
         string output_dr = "output_dr.txt";
         string output_e1 =  "output_e1.txt";
-        //string outputPath = "output.txt";
+        string output_rmax = "output_rmax.txt";
+        string output_e2 = "output_e2.txt";
 
+        //laver mine resultatet til txt filer
         try{
-            //kode der laver resultat
+            //kode der skriver ting ind i txt filer
             using(StreamWriter writer = new StreamWriter(output_dr))
             {foreach(double val in drs){writer.WriteLine($"{val}");}}
-            Console.WriteLine("everything according to plan\n");
+
+            using(StreamWriter writer2 = new StreamWriter(output_rmax))
+            {foreach(double val in rmaxs){writer2.WriteLine($"{val}");}}
+
+            using(StreamWriter writere1 = new StreamWriter(output_e1))
+            {foreach(double val in energies){writere1.WriteLine($"{val}");}}
+
+            using(StreamWriter writere2 = new StreamWriter(output_e2))
+            {foreach(double val in energies2){writere2.WriteLine($"{val}");}}
             }
         catch (Exception ex){
-            Console.WriteLine($"SHIT SOFIE: {ex.Message}\n");
+            Console.WriteLine($"not computing converge-data into txt files: {ex.Message}\n");
             }
 
+        //Plot wavefunction (jeg sætter rmax=10 og dr=0.3)
+        double dr_opgb = 0.3;
+        int rmax_opgb = 10;
+        matrix wavess = hamiltonian(rmax_opgb,dr_opgb);
+        EVD waves = new EVD(wavess);
+        // V VEKTOR ER PUNTKER MED VÆRDIER I DR AFSTAND FRA HINANDEN
+        matrix wave_funcs = waves.V;
+        vector wave_energies = waves.w;
+        //wave_funcs[0].print();
+        //wave_energies.print();
+        double [] f_1s = new double[wave_funcs.size1];
+        double [] f_2s = new double[wave_funcs.size1];
+        double [] f_3s = new double[wave_funcs.size1];
+        double [] rs = new double[wave_funcs.size1];
+        double normalisation = 1/Math.Sqrt(dr_opgb);
+        for (int i = 0; i< wave_funcs.size1; i++){
+            rs[i] = (i+1)*dr_opgb;
+            f_1s[i] = Math.Pow(wave_funcs[0,i],2)*normalisation;
+            f_2s[i] = Math.Pow(wave_funcs[1,i],2)*normalisation;
+            f_3s[i] = Math.Pow(wave_funcs[2,i],2)*normalisation;
+        }
+
+        string output_f1 = "f1.txt";
+        string output_f2 = "f2.txt";
+        string output_f3 = "f3.txt";
+        string output_rs = "rs.txt";
+
         try{
-            //kode der laver resultat
-            using(StreamWriter writer = new StreamWriter(output_e1))
-            {foreach(double val in energies){writer.WriteLine($"{val}");}}
-            Console.WriteLine("everything according to plan\n");
+            using(StreamWriter wavewriter1 = new StreamWriter(output_f1))
+            {foreach(double val in f_1s){wavewriter1.WriteLine($"{val}");}}
+
+            using(StreamWriter wavewriter2 = new StreamWriter(output_f2))
+            {foreach(double val in f_2s){wavewriter2.WriteLine($"{val}");}}
+
+            using(StreamWriter wavewriter3 = new StreamWriter(output_f3))
+            {foreach(double val in f_3s){wavewriter3.WriteLine($"{val}");}}
+
+            using(StreamWriter wavewriter4 = new StreamWriter(output_rs))
+            {foreach(double val in rs){wavewriter4.WriteLine($"{val}");}}
         }
-        catch (Exception ex){
-            Console.WriteLine($"SHIT SOFIE: {ex.Message}\n");
+        catch(Exception ex){
+            Console.WriteLine($"not computing wave-data into txt files: {ex.Message}\n");
         }
+
     } // main stops
 
     public static matrix jacobian(int p,int q,double theta, matrix A){
@@ -146,10 +191,8 @@ class MainEVD{
         int iterations = 10;
         double[] drs = new double[iterations];
         double[] energies = new double[iterations];
-        //List<List<double>> ToLister = new List<List<double>>();
-        // skifter dr i forhold til rmax således at dr er mindre end 1
         for(int i=0; i < iterations; i++){
-            double dr = i+1;
+            double dr = (i+1)*0.1;
             matrix hamils = hamiltonian(rmax,dr);
             EVD sols = new EVD(hamils);
             drs[i] = dr;
@@ -164,7 +207,7 @@ class MainEVD{
         double[] rmaxs = new double[iterations];
         double[] energies = new double[iterations];
         for(int i=0; i<iterations; i++){
-            double rmax = 3+i;
+            int rmax = 3+3*i;
             matrix hamils = hamiltonian(rmax,dr);
             EVD sols = new EVD(hamils);
             rmaxs[i] = rmax;
