@@ -1,0 +1,12 @@
+Starting with symmetric matrix A
+Checking if V^T*V=1 
+True
+Checking if V*V^T=1 
+True
+Checking if V^T*A*V=D 
+True
+Checking if V*D*V^T=A 
+True
+we get rmax = 0, and dr = 0 
+wrong filename argument, use instead: mono main.exe -rmax:<value> -dr:<value>
+the lowest energy for rmax=10 and dr = 0.3 is -0.489228332438007

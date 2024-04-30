@@ -1,0 +1,8 @@
+set terminal png background "white" ; \
+set output "sin_cos.png";\
+set grid 
+
+    
+plot "out.data.txt" index 0 with lines title "data points"\
+
+

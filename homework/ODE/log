@@ -1,0 +1,14 @@
+
+Unhandled Exception:
+System.FormatException: Input string was not in a correct format.
+  at System.Number.ThrowOverflowOrFormatException (System.Boolean overflow, System.String overflowResourceKey) [0x00020] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at System.Number.ParseDouble (System.ReadOnlySpan`1[T] value, System.Globalization.NumberStyles styles, System.Globalization.NumberFormatInfo info) [0x0008b] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at System.Double.Parse (System.String s) [0x0001d] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at vector..ctor (System.String s) [0x0003a] in <d6c21f750ebe492cbaed49240644abfa>:0 
+  at Mainspline.Main () [0x000ea] in <a2b4b05b424f4890849013c11ab1177e>:0 
+[ERROR] FATAL UNHANDLED EXCEPTION: System.FormatException: Input string was not in a correct format.
+  at System.Number.ThrowOverflowOrFormatException (System.Boolean overflow, System.String overflowResourceKey) [0x00020] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at System.Number.ParseDouble (System.ReadOnlySpan`1[T] value, System.Globalization.NumberStyles styles, System.Globalization.NumberFormatInfo info) [0x0008b] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at System.Double.Parse (System.String s) [0x0001d] in <12b418a7818c4ca0893feeaaf67f1e7f>:0 
+  at vector..ctor (System.String s) [0x0003a] in <d6c21f750ebe492cbaed49240644abfa>:0 
+  at Mainspline.Main () [0x000ea] in <a2b4b05b424f4890849013c11ab1177e>:0 

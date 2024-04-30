@@ -1,0 +1,12 @@
+set terminal png background "white"
+
+set output "dr_energy.png"
+set xlabel "dr[bohr radius]" 
+set ylabel "Energy [Hartree]"
+set grid
+set title "Groundstate energy at rmax=10 for different dr-steps"
+set yrange[-0.7:0]
+
+
+
+plot "out.data.txt" index 0 with lines \

@@ -1,0 +1,9 @@
+set terminal png background "white"
+set out "rmax_energy.png"
+set xlabel "rmax[bohr radius]" 
+set ylabel "Energy [Hartree]"
+set grid
+set title "Groundstate energy at dr=0.3 for different rmax"
+
+
+plot "out.data.txt" index 1 with lines \
