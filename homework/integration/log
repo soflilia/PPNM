@@ -6,3 +6,12 @@ So the definite integral of 4*sqrt(1-x²) from 0 to 1 is 3.14183457802727
 accuracy adequate
 So the definite integral of ln(x)/sqrt(x) from 0 to 1 is -3.99991705899915
 accuracy adequate
+
+ 
+OPG B: 
+We have the normal integration counted: 8572 and its value is 1.99996150007805
+We have the transformed integration counted: 16 and its value is 1.99999201046432
+Compared to scipy.qud in python: 231
+We have the normal integration counted: 8604 and its value is -3.99991705899915
+We have the transformed integration counted: 96 and its value is -3.99987385646141
+Compared to scipy.qud in python: 315

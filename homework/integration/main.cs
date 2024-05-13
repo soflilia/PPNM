@@ -36,16 +36,6 @@ class MainINT{
             Console.Write($"{z} {erf(z)}\n");
         }
         Console.Write("\n\n");
-
-        //OPG B
-
-        //testing that the functions give me what it says in the homework
-        int ncalls = 0;
-        Func <double,double> count = z=> (ncalls++ ; return 1.0/(Math.Sqrt(x)));
-        double normal = integrate(count,3,4);
-
-        //Func <double,double> count1 = z=> (ncalls++ ; return 1.0/(Math.Sqrt(x)));
-
     }
 
     public static double erf(double z){

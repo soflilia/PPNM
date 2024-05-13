@@ -9,26 +9,18 @@ LIBS = $(addprefix -reference:,$(filter %.dll,$^))
 MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE) 
 MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 
-#default : sin_cos.png pendul.png LK.png
+default : main.exe mainB.exe erf.png out.data.txt
 
 erf.png: out.data.txt erf.gpi
 	gnuplot -e "load 'erf.gpi'"
 
-#opg b) variable trans
-
-#VT.png: outB.txt motion.gpi
-#	gnuplot -e "load 'motion.gpi'"
-
-outB.txt: mainB.exe
-	mono $< >$@ 2>log
-
-mainB.exe : mainB.cs integration.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
-
-
-out.data.txt: main.exe
-	mono $< >$@ 2>log
+out.data.txt: main.exe mainB.exe
+	(mono main.exe > out.data.txt 2> log)
+	(mono mainB.exe >> out.data.txt 2>> log)
 
 main.exe : main.cs integration.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
+
+mainB.exe : mainB.cs integration.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
 
 integration.dll: integration.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
