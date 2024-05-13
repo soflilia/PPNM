@@ -81,7 +81,7 @@ class MainEVD{
 
         //rmax som funktion af dr:
         //NOGET ER GALT HER, DE KONVERGERER FOR STORE DR IKKE SMÅ???
-        var results2 = graph_rmax(0.3);
+        var results2 = graph_rmax(0.1);
         double [] rmaxs = results2.Item1;
         double [] energies2 = results2.Item2;
         //
@@ -95,8 +95,8 @@ class MainEVD{
 
         Console.Write("\n\n");
         //Plot wavefunction (jeg sætter rmax=10 og dr=0.3)
-        double dr_opgb = 0.3;
-        int rmax_opgb = 10;
+        double dr_opgb = 0.1;
+        int rmax_opgb = 30;
         matrix wavess = hamiltonian(rmax_opgb, dr_opgb);
         //wavess.print();
         EVD waves = new EVD(wavess);
@@ -111,11 +111,12 @@ class MainEVD{
         double [] f_3s = new double[wave_funcs.size1];
         double [] rs = new double[wave_funcs.size1];
         double normalisation = 1/Math.Sqrt(dr_opgb);
+        Console.Write($"{0} {0} {0} {0}\n");
         for (int i = 0; i< wave_funcs.size1; i++){
             rs[i] = (i+1)*dr_opgb;
-            f_1s[i] = Math.Pow(wave_funcs[i,0],2)*normalisation;
-            f_2s[i] = Math.Pow(wave_funcs[i,1],2)*normalisation;
-            f_3s[i] = Math.Pow(wave_funcs[i,2],2)*normalisation;
+            f_1s[i] = wave_funcs[i,0]*normalisation*Math.Sign(wave_funcs[0,0]);
+            f_2s[i] = wave_funcs[i,1]*normalisation*Math.Sign(wave_funcs[0,1]);
+            f_3s[i] = wave_funcs[i,2]*normalisation*Math.Sign(wave_funcs[0,2]);
             Console.Write($"{rs[i]} {f_1s[i]} {f_2s[i]} {f_3s[i]}\n");
         }
 
@@ -169,7 +170,7 @@ class MainEVD{
         double[] rmaxs = new double[iterations];
         double[] energies = new double[iterations];
         for(int i=0; i<iterations; i++){
-            int rmax = 3+3*i;
+            int rmax = 3+(10-3)*i/(iterations-1);
             matrix hamils = hamiltonian(rmax,dr);
             EVD sols = new EVD(hamils);
             rmaxs[i] = rmax;

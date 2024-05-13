@@ -19,6 +19,8 @@ MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 #output_dr.txt: main.exe
 #mono $< >$@
 
+all: dr_energy.png  rmax_energy.png wavefunctions.png
+
 dr_energy.png : eigenplot.gpi out.data.txt
 	gnuplot -e "load 'eigenplot.gpi'"
 

@@ -1,0 +1,8 @@
+set terminal png background "white" ; \
+set output "lngamma.png";\
+set xrange[0:5]
+set yrange[-3:6]
+set grid 
+
+    
+plot "out.data.txt" index 1 with lines title "Logarithmic Gamma(x)"\

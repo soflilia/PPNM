@@ -1,0 +1,14 @@
+6.12e-17+1i
+yes, sqrt(-1) is calculated properly
+0.707+0.707i
+yes, sqrt(-i) is calculated properly
+0.54+0.841i
+yes, e^i is calculated properly
+-1+1.22e-16i
+yes, e^(i pi) is calculated properly
+0.208+0i
+yes, i^i is calculated properly
+0+1.57i
+yes, ln(i) is calculated properly
+0+11.5i
+yes, sin(i*pi) is calculated properly

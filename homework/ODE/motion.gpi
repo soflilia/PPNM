@@ -1,0 +1,9 @@
+set terminal png background "white" ; \
+set output "motion.png";\
+set grid 
+set view equal xy
+
+    
+plot "outB.txt" index 0 using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "circular" \
+    ,"outB.txt" index 1 using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "eliptical" \
+    ,"outB.txt" index 2 using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "precision" 

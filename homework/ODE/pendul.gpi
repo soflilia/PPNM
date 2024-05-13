@@ -4,4 +4,4 @@ set grid
 
     
 plot "out.data.txt" index 1 using 1:2 with lines title "O"\
-	,"out.data.txt" index 1 using 1:3 with lines title "T",\
+	,"out.data.txt" index 1 using 1:3 with lines title "T"\

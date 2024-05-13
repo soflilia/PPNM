@@ -26,7 +26,7 @@ public class qspline{
 		}
 
     public static int binsearch(vector x, double z){
-	    if( z<x[0] || z>x[x.size-1] ) {throw new Exception("z outside interval\n");}
+	    if( z<x[0] || z>x[x.size-1] ){throw new Exception("z outside interval}\n");}
         else{
 	        int i=0, j=x.size-1;
 	        while(j-i>1){

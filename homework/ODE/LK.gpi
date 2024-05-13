@@ -1,0 +1,7 @@
+set terminal png background "white" ; \
+set output "LK.png";\
+set grid 
+
+    
+plot "out.data.txt" index 2 using 1:2 with lines title "X"\
+	,"out.data.txt" index 2 using 1:3 with lines title "Y"\

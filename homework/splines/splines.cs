@@ -4,11 +4,6 @@ using System;
 
 
 public class Splines{
-    public double linear_interpolation;
-    public double linterp_integration;
-    public double integration_bites;
-    //ting du kan kalde
-
     public static int binsearch(double[] x, double z){
 	    if( z<x[0] || z>x[x.Length-1] ) {throw new Exception("z outside interval\n");}
         else{
@@ -50,7 +45,6 @@ public class Splines{
         }
 
     public Splines(double[] x, double[] y, double z){
-        this.linear_interpolation = linterp(x,y,z);
-        this.linterp_integration = linterpInteg(x,y,z);
+
         }
 }

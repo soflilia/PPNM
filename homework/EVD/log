@@ -9,4 +9,4 @@ Checking if V*D*V^T=A
 True
 we get rmax = 0, and dr = 0 
 wrong filename argument, use instead: mono main.exe -rmax:<value> -dr:<value>
-the lowest energy for rmax=10 and dr = 0.3 is -0.489228332438007
+the lowest energy for rmax=30 and dr = 0.1 is -0.498756171788454
