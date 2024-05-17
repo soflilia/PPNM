@@ -1,0 +1,4 @@
+Result with N=300000: 3.13932, Error: 0.00300108310314793
+The actual error is larger than 1/sqrt(N) for small N,
+then converges towards 1/sqrt(N) for larger N>10 000 
+Result with N=100000: 1.37330633773427, Error: 0.0134613112760556

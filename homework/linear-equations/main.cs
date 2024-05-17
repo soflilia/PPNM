@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System; 
 
 public static class QRGS{
-
+    
     public static void Main() {
     //random generation of matrix A and vector b for tests
     matrix Rnd_A = random_matrix();
