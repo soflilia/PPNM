@@ -34,8 +34,7 @@ outB.txt: mainB.exe
 
 mainB.exe : mainB.cs ode.dll quadspline.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
 
-main.exe : main.cs ode.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
-
+main.exe : main.cs ode.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)m
 
 ode.dll: ode.cs matrixlib.dll vector.dll linear.dll quadspline.dll; $(MKLIB)
 
@@ -48,8 +47,6 @@ linear.dll : $(QR_lib)/main.cs matrixlib.dll vector.dll; $(MKLIB)
 vector.dll : $(mat_lib)/vector.cs ; $(MKLIB)
 
 matrixlib.dll:$(mat_lib)/matrix.cs vector.dll ; $(MKLIB)
-
-
 
 
 clean:

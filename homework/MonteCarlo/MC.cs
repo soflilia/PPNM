@@ -69,4 +69,18 @@ public class MonteCarlo{
         else{Error.Write("wrong dimensions \n");}
         return halton;
     }
+
+    public static Str_sampling(Func<vector,double> f,vector a,vector b, int N, int nmin){
+        if (N<=nmin){
+            var (result, error) = plainmc(f,a,b,N);
+        }
+        else{
+        double[] res = new double[a.size];
+        double[] var = new double[a.size];
+        for(int i; i < a.size; i++)
+            (res[i],var[i])= plainmc(f,a[i],b[i],nmin);
+        }
+
+        
+    }
 }

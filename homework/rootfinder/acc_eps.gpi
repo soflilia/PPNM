@@ -1,0 +1,7 @@
+set terminal png background "white" ; \
+set output "acc_eps.png";\
+set grid 
+
+    
+plot "out.data.txt" index 2 using 1:2 with lines title "E(acc)" \
+    ,"out.data.txt" index 3 using 1:2 with lines title "E(eps)" \

@@ -64,14 +64,5 @@ class MainODE{
             f[1] = -c*y[1] + d*y[0]*y[1];
             f[0] = a*y[0] - b*y[0]*y[1];
             return f;
-        }
-
-        public static vector motion(double x, vector y){
-            double eps = 0.0;
-            vector f= new vector(2);
-            f[0] = y[1];
-            f[1] = 1-y[0]+eps*Math.Pow(y[0],2);
-            return f;
-        }
-        
+        }        
 } // EVD STOPS

@@ -1,0 +1,6 @@
+set terminal png background "white" ; \
+set output "conv2.png";\
+set grid 
+
+    
+plot "out.data.txt" index 1 using 1:2 with lines title "E(rmax)" \
