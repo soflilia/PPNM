@@ -1,0 +1,7 @@
+set terminal png background "white" ; \
+set output "BW.png";\
+set grid 
+
+    
+plot "out.data.txt" index 0 using 1:2 with lines title "Breit Wigner fit" \
+    ,"data.txt" index 0 using 1:2:3 with errorbars title "Data points" \

@@ -1,3 +1,7 @@
 Computing minima at start point = (2,3)...
 Rosenbrucks function: n = 15 iterations, value = 2.54312672078964E-10
+(x,y) = (1.00001583944688,1.00003149408804)
 Himmelblau function: n = 6 iterations, value = 3.39504799952034E-14
+(x,y) = (2.99999996754282,2.00000002738499)
+My values are: n = 15 iterations, value = 31.555079705405
+and the params are m= 124.693122359264, gamma= 2.49214556912913 A = 8.3665086782582
