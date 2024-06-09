@@ -26,8 +26,6 @@ class Mainspline{
         //Linear splines OPG A, både spline og integrale
 	    for(double z=xs[0];z<=xs[xs.Length-1];z+=1.0/64){
         Console.WriteLine($"{z} {Splines.linterp(xs,ys,z)} {Splines.linterpInteg(xs,ys,z)}");
-
-        // OPG B 
 		}
         }//main stops
 
