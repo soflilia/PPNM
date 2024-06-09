@@ -1,5 +1,7 @@
 set terminal png background "white" ; \
 set output "conv1.png";\
+set xlabel "rmin 
+set ylabel "Energy"
 set grid 
 
     

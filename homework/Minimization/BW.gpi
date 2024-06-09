@@ -1,5 +1,7 @@
 set terminal png background "white" ; \
 set output "BW.png";\
+set xlabel "Energy[GeV]" 
+set ylabel "Cross section"
 set grid 
 
     

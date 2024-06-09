@@ -1,5 +1,7 @@
 set terminal png background "white" ; \
 set output "acc_eps.png";\
+set xlabel "Value (acc and eps)" 
+set ylabel "Energy"
 set grid 
 
     

@@ -42,7 +42,7 @@ class minimization{
         vector error1 = new vector(error.data);
 
         Func<vector,double> from_many_to_1 = (vector gæt) => D(energy1,cross1,error1,gæt);
-        vector start_gæt = new vector(125,2,10);
+        vector start_gæt = new vector(125,2,13);
 
 /*
 Jeg havde en masse bøvl med at få den til at virke 
@@ -54,13 +54,13 @@ Jeg havde en masse bøvl med at få den til at virke
 */ 
 
         //Jeg har fundet at mange iterations ikke gør noget når den sidder fast, istedet sætter jeg accuracy op
-        MIN A1 = new MIN(from_many_to_1,start_gæt, 0.00001, 15);
+        MIN A1 = new MIN(from_many_to_1,start_gæt, 0.00001, 400);
 
         Error.Write($"My values are: n = {A1.count} iterations, value = {A1.value_min}\n");
         Error.Write($"and the params are m= {A1.min_point[0]}, gamma= {A1.min_point[1]} A = {A1.min_point[2]}\n");
         
-        for(int i=0; i<energy1.size;i++){
-            Write($"{energy1[i]} {breit_wigner(energy1[i],A1.min_point[0],A1.min_point[1],A1.min_point[2])}\n");
+        for(double i=100; i<160 ;i+=0.5){
+            Write($"{i} {breit_wigner(i,A1.min_point[0],A1.min_point[1],A1.min_point[2])}\n");
         }
         }// main stops
 
