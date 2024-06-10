@@ -1,0 +1,11 @@
+set terminal png background "white" ; \
+set output "neuralderivative.png";\
+set xlabel "x" 
+set ylabel "y"
+set title "Neural network algorithm"
+set grid 
+
+    
+plot "out.data.txt" index 0 using 1:3 title "Fp(x)" \
+    , "out.data.txt" index 0 using 1:4 title "derivative of Fp(x)" \
+    , "out.data.txt" index 0 using 1:5 title "2nd derivative of Fp(x)" \

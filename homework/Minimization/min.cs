@@ -16,8 +16,11 @@ public class MIN{
         vector grad = new vector(x.size);
         double fx= f(x);
         for (int i=0; i< x.size; i++){
-            double dx = Max(Abs(x[i]),1)*Pow(2,-26);
+            double dx = Max(Abs(x[i]),1)*Pow(2,-24);
             x[i]+= dx;
+            double fx_plus_dx = f(x);
+            if (double.IsNaN(fx_plus_dx)) {
+                throw new Exception($"NaN detected in gradient calculation at index {i}, x = {x}");}
             grad[i] = (f(x)- fx)/dx;
             x[i]-= dx;
         }
@@ -49,6 +52,8 @@ public class MIN{
 		vector dx = QRGS.solve(Q,R,-f_grad); /* Newton's step */
 
 		double λ=1,fx=f(x);
+        if (Double.IsNaN(fx)) {Error.Write($"is Nan inside minimize, iteration no: {count}");
+        fx = 0;};
 		do{ /* linesearch */
 			if( f(x+λ*dx) < fx ){
             //Error.Write("good step!\n");
