@@ -1,5 +1,6 @@
 set terminal png background "white" ; \
 set output "LK.png";\
+set title "Lotka Volterra"
 set grid 
 
     

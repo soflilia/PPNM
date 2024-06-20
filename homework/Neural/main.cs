@@ -33,7 +33,7 @@ class main_neuralA{
         }
     }
 
-
+    //Giver dig et datasæt (vector x, vector y) at træne på
     public static (vector,vector) train_it(
         int L, // hvor mange datapunkter skal trænes
         Func<double,double> f,//funktion

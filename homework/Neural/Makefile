@@ -27,13 +27,6 @@ neuralderivative.png: out.data.txt neuralderivative.gpi
 neural-antideriv.png: out.data.txt neural-antideriv.gpi
 	gnuplot -e "load 'neural-antideriv.gpi'"
 
-
-outB.txt: mainB.exe
-	mono $< >$@ 2>log
-
-mainB.exe : mainB.cs neural.dll matrixlib.dll vector.dll linear.dll genlist.dll min.dll; $(MKEXE)
-
-
 main.exe : main.cs neural.dll matrixlib.dll vector.dll linear.dll genlist.dll min.dll; $(MKEXE)
 
 neural.dll: neural.cs matrixlib.dll vector.dll jacobi.dll linear.dll genlist.dll min.dll; $(MKLIB)
