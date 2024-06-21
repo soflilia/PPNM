@@ -44,15 +44,6 @@ class minimization{
         Func<vector,double> from_many_to_1 = (vector gæt) => D(energy1,cross1,error1,gæt);
         vector start_gæt = new vector(125,2,13);
 
-/*
-Jeg havde en masse bøvl med at få den til at virke 
-        Error.Write($"from many to one funktion: {from_many_to_1(start_gæt)}\n");
-
-        Error.Write($"Breit Wigner: {breit_wigner(125, start_gæt[0],start_gæt[1],start_gæt[2])}\n");
-
-        Error.Write($"bare fra D: {D(energy1,cross1,error1,start_gæt)}\n");
-*/ 
-
         //Jeg har fundet at mange iterations ikke gør noget når den sidder fast, istedet sætter jeg accuracy op
         MIN A1 = new MIN(from_many_to_1,start_gæt, 0.00001, 400);
 

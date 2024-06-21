@@ -32,8 +32,7 @@ public static class QRGS{
     vector b1 = random_vector(Rnd_A1.size1);
     vector x1 = solve(Q1,R1,b1);
     vector b0 = Rnd_A1*x1;
-    //b1.print("Vector b1: ");
-    //tb.print("Vector random: ");
+
     if(vector.approx(b1,b0)){Console.Write("passed...\n");}
     else{Console.Write("failed..\n");}
 

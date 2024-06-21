@@ -73,6 +73,7 @@ public class MonteCarlo{
     public static Str_sampling(Func<vector,double> f,vector a,vector b, int N, int nmin){
         if (N<=nmin){
             var (result, error) = plainmc(f,a,b,N);
+            return (result,error);
         }
         else{
         double[] res = new double[a.size];

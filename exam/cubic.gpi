@@ -1,0 +1,9 @@
+set terminal png background "white" ; \
+set output "cubic.png";\
+set grid 
+
+    
+plot "out.data.txt" index 0 with lines title "data points"\
+	,"out.data.txt" index 1 with lines title "derivative spline"\
+    ,"out.data.txt" index 2 with lines title "dcubic spline"\
+

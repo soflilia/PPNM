@@ -1,0 +1,12 @@
+p size is 10 when xs is 10
+Unhandled Exception:
+System.Exception: z outside interval}
+
+  at cubic_spline.binsearch (vector x, System.Double z) [0x00021] in <d7a4b4d4a09b4d0cbbf9d63eae124754>:0 
+  at cubic_spline.evaluate (System.Double z) [0x00000] in <d7a4b4d4a09b4d0cbbf9d63eae124754>:0 
+  at main.Main () [0x00106] in <f7470cf8f7d84a1692e8e148ed842efb>:0 
+[ERROR] FATAL UNHANDLED EXCEPTION: System.Exception: z outside interval}
+
+  at cubic_spline.binsearch (vector x, System.Double z) [0x00021] in <d7a4b4d4a09b4d0cbbf9d63eae124754>:0 
+  at cubic_spline.evaluate (System.Double z) [0x00000] in <d7a4b4d4a09b4d0cbbf9d63eae124754>:0 
+  at main.Main () [0x00106] in <f7470cf8f7d84a1692e8e148ed842efb>:0 

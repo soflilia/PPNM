@@ -51,6 +51,4 @@ class MainINT{
             return 1-2.0/Math.Sqrt(Math.PI)*Int.integrate(f1,0,1);
             }
         }
-
-        
 } // EVD STOPS
