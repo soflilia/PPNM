@@ -104,6 +104,53 @@ public class cubic_spline{
         return y[i] + coffs[0]*(z-x[i])+ coffs[1]*Pow(z-x[i],2) + coffs[2]*(Pow(z-x[i],3));
     }
 
+	public double derivative(double z){
+		int i = binsearch(this.x,z);
+        vector coffs = spline(x[i],x[i+1],y[i],y[i+1],p[i],p[i+1]);
+        Error.WriteLine($"Segment {i}: b_i = {coffs[0]}, c_i = {coffs[1]}, d_i = {coffs[2]}");
+		return coffs[0]+2*coffs[1]*(z-x[i])+3*coffs[2]*Pow(z-x[i],2);
+	}
 
-    }
+
+	public double derivative2(double z){
+        int i = binsearch(this.x,z);
+        double[] weights = new double[x.size-4];
+        if (i<2){//udregn de to første derivatives
+        Error.Write("første to derivatives \n");
+        return 0;
+        }
+        if (i>x.size-3){//udregn to sidste derivatives
+        Error.Write("sidste to derivatives \n");
+        return 0;
+        }
+        else{
+        // minus i og plus i
+        double w_mi =  Abs(p[i-1]-p[i-2]);
+        double w_pi = Abs(p[i+1]-p[i]);
+        if(w_mi+w_pi != 0){
+            double total = (w_pi*p[i-1]+w_mi*p[i])/(w_mi+w_pi);
+            return total;
+        }
+        return (p[i-1]-p[i])/2;
+        }
+
+        }
+	}
+/*
+	public double integral(double z){
+		//Returns value of integral from 0 to z
+		int i = binsearch(this.x,z);
+        double integrand = 0.0;
+        for (int j=0; j<i; j++){
+			double dx = x[j+1]-x[j];
+            integrand += y[j]*dx+b[j]/2*(Math.Pow(dx,2))+c[j]/3*Math.Pow(dx,3);
+            }
+		double last_dx = z-x[i];
+		integrand += y[i]*last_dx+b[i]/2*(Math.Pow(last_dx,2))+c[i]/3*Math.Pow(last_dx,3);
+		return integrand ;
+	}
+    */
+
+
+
 

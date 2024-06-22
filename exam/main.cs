@@ -20,7 +20,6 @@ static void Main(){
 
         cubic_spline cubic_init  = new cubic_spline(xs,ys);
         vector p_init = cubic_init.p;
-        Error.Write($"p size is {p_init.size} when xs is {xs.Length}");
         for(int i = 0; i<p_init.size; i++){
             Write($"{xs[i]} {p_init[i]}\n");
         }
@@ -28,8 +27,14 @@ static void Main(){
         //double eval = cubic_init.evaluate(1);
         //Write($"{eval}\n");
 
-        for (double z =0; z<10; z+= 1.0/64 ){
-            Write($"{z} {cubic_init.evaluate(z)} \n");
+        for (double z =0; z<9; z+= 1.0/12 ){
+            Write($"{z} {cubic_init.evaluate(z)} {cubic_init.derivative(z)}\n");
+        }
+
+        Write($"\n\n");
+
+        for (double z =0; z<9; z+= 1.0/12 ){
+            Write($"{z} {cubic_init.derivative2(z)}\n");
         }
         
 
