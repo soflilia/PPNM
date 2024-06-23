@@ -1,0 +1,11 @@
+set terminal png background "white" ; \
+set output "cubic_outlier.png";\
+set title "Cubic subspline of f(x) = 2/x with outlier at x=2"
+set grid 
+set xlabel "x" 
+set ylabel "y"
+
+
+    
+plot "out.data.txt" index 3 title "data points"\
+    ,"out.data.txt" index 5 using 1:2 with lines title "cubic subspline"\
