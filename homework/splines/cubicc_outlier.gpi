@@ -1,0 +1,13 @@
+set terminal png background "white" ; \
+set output "cubicc_outlier.png";\
+set title "Cubic spline of f(x) = 2/x with outlier at x=2"
+set grid 
+set xlabel "x" 
+set ylabel "y"
+set xrange [1:4]
+
+
+    
+plot "outBC.txt" index 2 title "data points"\
+    ,"outBC.txt" index 3 using 1:2 with lines title "cubic spline"\
+    ,"outBC.txt" index 2 smooth csplines title "cubic spline from gnuplot" \

@@ -1,0 +1,12 @@
+set terminal png background "white" ; \
+set output "cubicc_disc1.png";\
+set title "Cubic spline discontinuous function "
+set grid 
+set xlabel "x" 
+set ylabel "y"
+
+
+    
+plot "outBC.txt" index 5 using 1:2 with lines title "cubic spline"\
+    ,"outBC.txt" index 5 using 1:3 with lines title "derivative"\
+    ,"outBC.txt" index 5 using 1:4 with lines title "integral"\

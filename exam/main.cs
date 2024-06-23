@@ -16,7 +16,7 @@ static void Main(){
 	        }
 	    Write("\n\n");
         //Initialising cubic spline med cos(x)
-        cubic_spline cubic_init  = new cubic_spline(xs,ys);
+        cubic_subspline cubic_init  = new cubic_subspline(xs,ys);
         vector p_init = cubic_init.p;
         for(int i = 0; i<p_init.size; i++){
             Write($"{xs[i]} {p_init[i]}\n");
@@ -39,7 +39,7 @@ static void Main(){
 	        }
         Write($"\n\n");
         //Initialising cubic spline
-        cubic_spline cubic_outlier  = new cubic_spline(xs_outlier,ys_outlier);
+        cubic_subspline cubic_outlier  = new cubic_subspline(xs_outlier,ys_outlier);
         vector p_outlier= cubic_outlier.p;
         for(int i = 0; i<p_outlier.size; i++){
             Write($"{xs_outlier[i]} {p_outlier[i]}\n");
@@ -61,7 +61,7 @@ static void Main(){
 	        }
         Write($"\n\n");
         //Initialising cubic spline
-        cubic_spline cubic_disc  = new cubic_spline(xs_disc,ys_disc);
+        cubic_subspline cubic_disc  = new cubic_subspline(xs_disc,ys_disc);
         vector p_disc= cubic_disc.p;
         for(int i = 0; i<p_disc.size; i++){
             Write($"{xs_disc[i]} {p_disc[i]}\n");

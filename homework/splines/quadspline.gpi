@@ -3,7 +3,7 @@ set output "quadspline.png";\
 set grid 
 
     
-plot "outB.txt" index 0 with points title "data points" \
-	,"outB.txt" index 1 using 1:2 with lines title "quadspline"\
-	,"outB.txt" index 1 using 1:3 with lines title "quadspline definite integral"\
+plot "outBC.txt" index 0 with points title "data points" \
+	,"outBC.txt" index 1 using 1:2 with lines title "quadspline"\
+	,"outBC.txt" index 1 using 1:3 with lines title "quadspline definite integral"\
 

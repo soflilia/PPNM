@@ -1,7 +1,5 @@
 mat_lib = ../presets
 QR_lib = ../linear-equations
-JCOBI = ../EVD/jacobi.cs
-
 
 # $@ er target, dvs det før : i din lille kode
 
@@ -10,7 +8,7 @@ LIBS = $(addprefix -reference:,$(filter %.dll,$^))
 MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE) 
 MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 
-default : linearspline.png quadspline.png
+default : linearspline.png quadspline.png cubicc_outlier.png cubicc_disc.png cubicc_disc1.png 
 
 #A
 
@@ -22,18 +20,27 @@ out.data.txt: main.exe
 	mono $< >$@ 2>log
 
 
-main.exe : main.cs splines.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
+main.exe : main.cs splines.dll matrixlib.dll vector.dll linear.dll; $(MKEXE)
 
 #B 
 
-quadspline.png : quadspline.gpi outB.txt
+quadspline.png : quadspline.gpi outBC.txt
 	gnuplot -e "load 'quadspline.gpi'"
 
-outB.txt: mainB.exe
+cubicc_outlier.png : cubicc_outlier.gpi outBC.txt
+	gnuplot -e "load 'cubicc_outlier.gpi'"
+
+cubicc_disc.png : cubicc_disc.gpi outBC.txt
+	gnuplot -e "load 'cubicc_disc.gpi'"
+
+cubicc_disc1.png : cubicc_disc1.gpi outBC.txt
+	gnuplot -e "load 'cubicc_disc1.gpi'"
+
+
+mainBC.exe : mainBC.cs cubic.dll quadspline.dll matrixlib.dll vector.dll linear.dll; $(MKEXE)
+
+outBC.txt: mainBC.exe
 	mono $< >$@ 2>log
-
-mainB.exe : mainB.cs quadspline.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
-
 
 
 
@@ -41,7 +48,7 @@ splines.dll: splines.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
 quadspline.dll: quadspline.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
-jacobi.dll: $(JCOBI) matrixlib.dll vector.dll linear.dll; $(MKLIB)
+cubic.dll: cubic.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
 linear.dll : $(QR_lib)/main.cs matrixlib.dll vector.dll; $(MKLIB)
 

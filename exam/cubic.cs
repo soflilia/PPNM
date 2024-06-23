@@ -6,10 +6,10 @@ using static System.Console;
 using static QRGS;
 using System;
 
-public class cubic_spline{
+public class cubic_subspline{
 	public vector x,y,b,c,d,p;
 
-	public cubic_spline(vector xs,vector ys){
+	public cubic_subspline(vector xs,vector ys){
         // initialiser derivatives fra quadspline
         this.x = xs.copy();
         this.y = ys.copy();
