@@ -1,6 +1,5 @@
 using static vector;
 using static matrix;
-using static qspline;
 using static System.Math;
 using static System.Console;
 using static QRGS;

@@ -9,3 +9,4 @@ set ylabel "y"
     
 plot "out.data.txt" index 3 title "data points"\
     ,"out.data.txt" index 5 using 1:2 with lines title "cubic subspline"\
+    ,"out.data.txt" index 3 smooth csplines title "cubic spline from gnuplot" \
