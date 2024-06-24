@@ -3,7 +3,9 @@ using static matrix;
 using static QRGS;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using static System.Random;
 
 
 class MainEVD{
@@ -21,14 +23,12 @@ class MainEVD{
 
         Console.Error.Write("Checking if V^T*V=1 \n");
         matrix VTV = V1.T*V1;
-        //VTV.print();
         if (VTV.approx(matrix.id(V1.size1))){Console.Error.Write("True\n");}
         else{Console.Error.Write("False\n");}
 
 
         Console.Error.Write("Checking if V*V^T=1 \n");
         matrix VVT = V1*V1.T;
-        //VTV.print();
         if (VVT.approx(matrix.id(V1.size1))){Console.Error.Write("True\n");}
         else{Console.Error.Write("False\n");}
 
@@ -44,7 +44,7 @@ class MainEVD{
         if (VDVT.approx(A)){Console.Error.Write("True\n");}
         else{Console.Error.Write("False\n");}
 
-        // OPG B NU SKAL DEN LÆSE MIT INPUT I VERSION EX: "mono main.exe -rmax:10 -dr:0.3"
+        // OPG B NU SKAL DEN LÆSE MIT INPUT I VERSION EX: "mono main.exe -rmax:10 -dr:0.3"......................................
         double rmax= 0;
         double dr = 0.0;
         foreach(var arg in args){
@@ -55,7 +55,7 @@ class MainEVD{
         Console.Error.Write($"we get rmax = {rmax}, and dr = {dr} \n");
         // if we have values we compute the hamiltonian for our manual values
         if(rmax == 0 || dr == 0.0){
-            Console.Error.WriteLine("wrong filename argument, use instead: mono main.exe -rmax:<value> -dr:<value>");
+            Console.Error.WriteLine("you didnt input values, to do this write: mono main.exe -rmax:<value> -dr:<value>");
             }
         else{
             // computing the Hamiltonian and solution
@@ -63,12 +63,9 @@ class MainEVD{
             vector ground_vec = hydrogen.V[0];
             double ground_energy = hydrogen.w[0];
             //printing for the case with our manually chosen rmax and dr
-            Console.Error.Write("eigenvectors:\n");
-            //eigenvecs_h.print();
-            Console.Error.Write("eigenvalues:\n");
-            //eigenvals_h.print();
+            Console.Error.Write("Computing your input data....");
             // finding lowest states = ground state
-            Console.Error.Write($"Meaning our ground state has energy:{ground_energy}\n");
+            Console.Error.Write($"Ground state has energy:{ground_energy}\n");
             Console.Error.Write("With corresponding eigen vector:\n");
             ground_vec.print();
 
@@ -94,17 +91,12 @@ class MainEVD{
             }
 
         Console.Write("\n\n");
-        //Plot wavefunction (jeg sætter rmax=10 og dr=0.3)
         double dr_opgb = 0.1;
         int rmax_opgb = 30;
         matrix wavess = hamiltonian(rmax_opgb, dr_opgb);
-        //wavess.print();
         EVD waves = new EVD(wavess);
-        // V VEKTOR ER PUNTKER MED VÆRDIER I DR AFSTAND FRA HINANDEN
         matrix wave_funcs = waves.V;
         double ground = waves.w[0];
-        //wave_funcs[0].print();
-        //wave_energies.print();
         Console.Error.WriteLine($"the lowest energy for rmax={rmax_opgb} and dr = {dr_opgb} is {ground}");
         double [] f_1s = new double[wave_funcs.size1];
         double [] f_2s = new double[wave_funcs.size1];
@@ -120,16 +112,19 @@ class MainEVD{
             Console.Write($"{rs[i]} {f_1s[i]} {f_2s[i]} {f_3s[i]}\n");
         }
 
+        Console.Write($"\n\n");
+
+        // OPG C TIMING AF EVD I PARALLEL OG TJEKKE OM DEN GÅR SOM N³
+        int[] Ns = new int[] { 5, 10, 20, 30, 40, 50, 60, 70 };
+        
+        Parallel.ForEach(Ns, N => {
+            Time_EVD(N);
+        });
+
+
+
     } // main stops
 
-    public static matrix jacobian(int p,int q,double theta, matrix A){
-        matrix jacobian = matrix.id(A.size1);
-        jacobian[p,p] = Math.Cos(theta);
-        jacobian[q,q] = Math.Cos(theta);
-        jacobian[q,p] = - Math.Sin(theta);
-        jacobian[p,q] = Math.Sin(theta);
-        return jacobian;
-    }
 
     public static matrix hamiltonian(double rmax,double dr){
         int n = (int)(rmax/dr-1);
@@ -179,5 +174,42 @@ class MainEVD{
         return (rmaxs,energies);
     }
 
+    public static void Time_EVD(int n){
+        int trials = 10;
+        double time = 0.0;
+        Random rnd = new Random(2);
+        for (int t =0; t<trials; t++){
+            //laver random square matrice med [n,n]
 
-} // EVD STOPS
+            matrix A = new matrix(n,n);
+            for(int i =0 ; i<n; i++){
+                for(int j=i; j< n; j++){
+                    A[i,j] = A[j,i] = rnd.NextDouble()*20-10;
+                    }
+                }
+            // Display the matrix for debugging
+            /*
+            for (int row = 0; row < n; row++) {
+                for (int col = 0; col < n; col++) {
+                    Console.Error.Write($"{A[row, col]}    ");
+                }
+                Console.Error.Write("\n");
+            }*/
+
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            EVD new_evd = new EVD(A);
+
+            timer.Stop();
+            time += timer.Elapsed.TotalMilliseconds ;
+            Console.Error.Write($"{n}{timer.Elapsed.TotalMilliseconds}\n");
+            }
+        time /= trials;
+        Console.Error.WriteLine($"Matrix size:{n}, Time taken for diagonalization: {time} ms");
+        Console.Write($"{n} {time}\n");
+    }
+
+
+} // MainEVD STOPS
+

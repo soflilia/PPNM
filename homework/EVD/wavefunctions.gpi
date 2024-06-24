@@ -4,7 +4,7 @@ set terminal png background "white"
 
 set output "wavefunctions.png"
 set xlabel "R" 
-set ylabel "probability"
+set ylabel "Probability"
 set grid
 set title "Wavefunction of hydrogen atom"
 

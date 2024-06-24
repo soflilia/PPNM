@@ -22,7 +22,7 @@ class Mainquad{
             }
         Write("\n\n");
 
-        // ........... CUBIC SPLINE ...................
+        // ........... CUBIC SPLINE OPG C ...................
 
 
         //OUTLIER FUNKTION : f(x) =  2/x pånær x = 2 hvor f(x) = 5

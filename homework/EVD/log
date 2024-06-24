@@ -8,5 +8,93 @@ True
 Checking if V*D*V^T=A 
 True
 we get rmax = 0, and dr = 0 
-wrong filename argument, use instead: mono main.exe -rmax:<value> -dr:<value>
+you didnt input values, to do this write: mono main.exe -rmax:<value> -dr:<value>
 the lowest energy for rmax=30 and dr = 0.1 is -0.498756171788454
+50.0739
+50.0172
+50.0149
+50.0176
+50.0197
+50.0205
+50.0146
+50.0173
+50.0199
+50.0168
+Matrix size:5, Time taken for diagonalization: 0.02324 ms
+100.1293
+100.0962
+100.1687
+100.1033
+100.1065
+100.1077
+100.1148
+100.1289
+100.1071
+100.1111
+Matrix size:10, Time taken for diagonalization: 0.11736 ms
+200.853
+200.6547
+200.6569
+200.9233
+200.757
+404.7121
+200.7026
+200.6571
+200.6946
+200.7228
+202.5892
+Matrix size:20, Time taken for diagonalization: 0.92112 ms
+3012.0963
+302.0413
+302.0075
+5018.8428
+4021.5316
+304.5875
+301.9526
+301.8795
+405.7859
+404.3974
+5015.6564
+302.0151
+301.8979
+301.8725
+6040.6361
+404.395
+404.4564
+306.8636
+Matrix size:30, Time taken for diagonalization: 3.72138 ms
+5016.02
+406.1371
+509.1873
+404.6254
+405.9691
+404.1691
+Matrix size:40, Time taken for diagonalization: 6.61791 ms
+5015.6242
+6033.0131
+5015.9073
+6026.423
+5022.2699
+6030.1068
+5028.1342
+507.9365
+6025.3677
+5016.1031
+Matrix size:50, Time taken for diagonalization: 16.56817 ms
+6019.58
+6013.9137
+6013.6011
+6013.7778
+6014.0967
+Matrix size:60, Time taken for diagonalization: 23.0516 ms
+7020.2817
+7021.5726
+7025.3375
+7040.4804
+7065.5207
+7035.7241
+7022.6986
+7020.8006
+7020.4429
+7019.763
+Matrix size:70, Time taken for diagonalization: 29.26221 ms

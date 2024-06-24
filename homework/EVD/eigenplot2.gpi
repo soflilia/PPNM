@@ -6,4 +6,4 @@ set grid
 set title "Groundstate energy at dr=0.3 for different rmax"
 
 
-plot "out.data.txt" index 1 with lines \
+plot "out.data.txt" index 1 with lines title "Groundstate energy"\

@@ -9,4 +9,4 @@ set yrange[-0.7:0]
 
 
 
-plot "out.data.txt" index 0 with lines \
+plot "out.data.txt" index 0 with lines title "Groundstate energy" \

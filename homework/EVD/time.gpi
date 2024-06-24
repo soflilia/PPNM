@@ -1,0 +1,16 @@
+set terminal png background "white"
+
+set output "time.png"
+set xlabel "matrix size (n)" 
+set ylabel "Time [ms]"
+set grid
+set title "EVD process timed on different sized matrices"
+set xrange[2:80]
+
+O(x) = a*x**3
+a = 1
+
+fit O(x) "out.data.txt" index 3 using 1:2 via a
+
+plot O(x) title gprintf( "O(n) = %g * n² ",a) \
+    ,"out.data.txt" index 3 using 1:2 title "data points" pt 7\
