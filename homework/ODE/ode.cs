@@ -86,3 +86,77 @@ public class ODE{
 	}
 
 } //ODE stop
+
+
+public class euler{
+    public static vector step(
+    	//inputs to rkstep12
+		Func<double,vector,vector> f,/* the f from dy/dx=f(x,y) */
+		double x,                    /* the current value of the variable */
+		vector y,                    /* the current value y(x) of the sought function */
+		double h                     /* the step to be taken */){   
+	    	vector k0 = f(x,y);              /* embedded lower order formula (Euler) */
+	    	vector yh = y+k0*h;              /* y(x+h) estimate */
+	    	return yh;
+        	}
+
+    
+	public static (List<double>, List<vector>) driver(
+		Func<double,vector,vector> F,/* the f from dy/dx=f(x,y) */
+		(double,double) interval,    /* (start-point,end-point) */
+		vector ystart,               /* y(start-point) */
+		double h=0.125          /* initial step-size */){
+    		var (a,b)=interval; double x=a; vector y=ystart.copy();
+    		var xlist=new List<double>(); xlist.Add(x);
+    		var ylist=new List<vector>(); ylist.Add(y);
+    		do{
+        		if(x>=b) return (xlist,ylist); /* job done */
+        		if(x+h>b) h=b-x;               /* last step should end at b */
+        		var yh = step(F,x,y,h);
+					x+=h; y=yh;
+					xlist.Add(x);
+					ylist.Add(y);
+        	}while(true);
+    	}//driver
+/*
+	
+	public static Func<double,vector> make_quad_interpolant(List<double> x,List<vector> y){
+		//initialising stuff
+		vector x1 = new vector(x.Count);
+		for(int k =0; k<x.Count; k++){x1[k]=x[k];}
+		Console.Error.Write($"x.count ={x.Count}\n");
+		Console.Error.Write($"y[0].size = {y[0].size}\n");
+		vector solutions = new vector(y[0].size);
+		List<vector> ys = new List<vector>(y[0].size);
+		List<qspline> instances = new List<qspline>();
+		for (int i =0; i<y[0].size; i++){
+			Console.Error.Write($"we are i deep into the for loop:{i}\n");
+			vector yprime = new vector(x1.size);
+			for(int j=0; j<x1.size; j++){
+				Console.Error.Write($"going j deeper..:{j}\n");
+				yprime[j]= y[j][i];
+				}
+			ys.Add(yprime);
+			instances.Add(new qspline(x1,ys[i]));
+			}
+
+		Func<double,vector> interpolant = delegate(double z){
+			Console.Error.WriteLine($"z is {z}");
+			for(int i =0; i<y[0].size; i++){solutions[i]=instances[i].evaluate(z);}
+			return solutions;
+			};
+		return interpolant;
+		}//make_quad_interpolant
+
+
+	public static Func<double,vector> make_ode_ivp_interpolant(Func<double,vector,vector> f,
+	(double,double) interval,
+	vector y,
+	double acc=0.01,double eps=0.01,double hstart=0.01)
+	{
+	var (xlist,ylist) = driver(f,interval,y,acc,eps,hstart);
+	Console.Error.WriteLine($"z must be between {xlist[0]} and {xlist[xlist.Count-1]}");
+	return make_quad_interpolant(xlist,ylist);
+	}*/
+
+} //ODE stop

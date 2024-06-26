@@ -1,2 +1,79 @@
-Hej! Her beskriver jeg lige kort hvad jeg har gjort
+I have tested my cubic subspline on 3 different functions and have compared my cubic subspline to the normal cubic spline.
+First I give a short description of how I built my cubic subspline.
 
+
+1 and 2:
+-------------------------------------------------------------------------------------------------------------------
+Quadratic interpolating polynomial through 3 points. I solve 3 equations with 3 unknowns:
+a*x_i² + b*x_i + c = y_i
+i = index(1,2,3)
+
+I solve this using QR-decomposition by modified Gram-Schmidt orthogonalization using my first homework's class QRGS
+A*x = b,
+with b = [y1, y2, y3]
+
+     [x_1²,  x_1,  1]
+A =  [x_2²,  x_2,  1]
+     [x_3²,  x_3,  1]
+
+The solved vector gives x = [a, b , c] coefficients that give the derivative of the quadratic polynomial
+p_i = 2*a_i*x_i + b_i
+
+the points p_i are determined when they have points on either side. 
+The first and last p_i are determined through the nearest coefficients.
+
+3: 
+-------------------------------------------------------------------------------------------------------------------
+I build my cubic subspline
+
+S_i(x)= y_i +b_i(x-x_i) +c_i(x-x_i)^2 +d_i(x-x_i)^3 
+
+And with conditions
+
+S_i(x_i+1)=y_i+1,
+
+S'_i(x_i)=p_i,
+
+S'_i(x_i+1)=p_i+1. 
+
+Also by making a matrix equation A*x = b that can be solved through QR-decomposition
+In this instance I also have 3 equations with 3 unknowns. These are expressed by
+b = [y_i+1 - y_i , p_i , p_i+i ]
+
+    [(x_i+1 - x_i)   (x_i+1 - x_i)²  (x_i+1 - x_i)³ ]
+A = [      1                0              0        ]
+    [      1        2(x_i+1 - x_i)   3(x_i+1 - x_i)²]
+
+
+Extra: derivative and integral
+-------------------------------------------------------------------------------------------------------------------
+The derivative is quite simple as I took the analytical derivative of S_i(x)
+
+S'_i(x)= b_i +2 c_i(x-x_i) + 3 d_i(x-x_i)^2
+
+However, in the simple case of y = cos(x) the derivative looks a little funny. I therefore tried several things,
+one of which was to take the derivative of the cubic subspline numerically, and this gave me the exact same curve.
+
+I realised this is probably the subspline behavior I see:
+A subspline does not have the condition that the second derivative is continuous. Therefore the derivative
+might look funny.
+
+The integral was calculated analytically as well with 
+∫ S_i(x) dx = y_i*dx+ b_i/2 * dx² + c_i/3 * dx³ + d_i/4 * dx⁴
+Where dx is the length of the particular spline
+
+For each spline i with coefficients a_i, b_i, c_i and d_i, I sum up the integrals until I reach the 
+spline in which the point I wish to evaluate lies in.
+
+I then take the last evaluation as dx = z - x_n
+Where n is the index of the last point before z. 
+-------------------------------------------------------------------------------------------------------------------
+
+Evaluation: 
+I think I have done what was asked of me, including the extra tasks. I have shown my cubic subspline with 3 different
+function evaluations where I have both shown the cubic subspline itself and its derivative and integral.
+
+I have also shown that the cubic subspline I have built does indeed decrease the "wiggles" that a natural cubic 
+subspline has.
+
+I therefore give myself 9.5 / 10, because there is always room for improvement!

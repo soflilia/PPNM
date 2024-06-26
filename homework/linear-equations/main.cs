@@ -1,47 +1,57 @@
 using System.Collections.Generic;
 using System; 
+using System.Diagnostics;
+
 
 public static class QRGS{
     
     public static void Main() {
     //random generation of matrix A and vector b for tests
     matrix Rnd_A = random_matrix();
-    Console.Write($"compiling random matrix A...\n");
-    Console.Write($"compiling random vector b with similar dimensions...\n");
+    Console.Error.Write($"compiling random matrix A...\n");
+    Console.Error.Write($"compiling random vector b with similar dimensions...\n");
 
     //decomp testing
     (matrix Rnd_Q, matrix Rnd_R) = decomp(Rnd_A);
     //test om R er upper tirangulær
-    Console.Write("Testing if R is upper triangular... \n");
-    if(R_test(Rnd_R)){Console.Write("passed...\n");}
-    else{Console.Write("failed..\n");}
+    Console.Error.Write("Testing if R is upper triangular... \n");
+    if(R_test(Rnd_R)){Console.Error.Write("passed...\n");}
+    else{Console.Error.Write("failed..\n");}
 
     //test om QTQ=1 
-    Console.Write("Testing if Q^T*Q=1.. \n");
-    if(QT_test(Rnd_Q)){Console.Write("passed...\n");}
-    else{Console.Write("failed...\n");}
+    Console.Error.Write("Testing if Q^T*Q=1.. \n");
+    if(QT_test(Rnd_Q)){Console.Error.Write("passed...\n");}
+    else{Console.Error.Write("failed...\n");}
 
     // test om QR=A
-    Console.Write("Testing if QR=A.. \n");
-    if(A_test(Rnd_A, Rnd_R, Rnd_Q)){Console.Write("passed...\n");}
-    else{Console.Write("failed...\n");}
+    Console.Error.Write("Testing if QR=A.. \n");
+    if(A_test(Rnd_A, Rnd_R, Rnd_Q)){Console.Error.Write("passed...\n");}
+    else{Console.Error.Write("failed...\n");}
 
-    Console.Write("Testing if Ax=b with the x from solve.. \n");
+    Console.Error.Write("Testing if Ax=b with the x from solve.. \n");
     matrix Rnd_A1 = random_square();
     (matrix Q1, matrix R1) = decomp(Rnd_A1);
     vector b1 = random_vector(Rnd_A1.size1);
     vector x1 = solve(Q1,R1,b1);
     vector b0 = Rnd_A1*x1;
 
-    if(vector.approx(b1,b0)){Console.Write("passed...\n");}
-    else{Console.Write("failed..\n");}
+    if(vector.approx(b1,b0)){Console.Error.Write("passed...\n");}
+    else{Console.Error.Write("failed..\n");}
 
     // invers test
-    Console.Write("Testing if inverse function works. \n");
+    Console.Error.Write("Testing if inverse function works. \n");
     matrix N1 = random_square();
     (matrix Q_, matrix R_) = decomp(N1);
-    if(inverse_test(N1, inverse(Q_,R_))){Console.Write("passed...\n");}
-    else{Console.Write("failed...\n");}
+    if(inverse_test(N1, inverse(Q_,R_))){Console.Error.Write("passed...\n");}
+    else{Console.Error.Write("failed...\n");}
+
+
+
+    // OPG C .......................... 
+    int[] Ns = {5,10,15,20,25,30,35,40};
+    for (int i = 0; i< Ns.Length; i++){
+        Time_QR(Ns[i]);
+    }
     
 
     } // Main
@@ -253,5 +263,32 @@ public static class QRGS{
             x1[i] = (c[i]-sub) / R[i,i];
         }
         return x1;
-    } // solve closed 
+    } // solve closed
+
+    public static void Time_QR(int n){
+        int trials = 100;
+        double time = 0.0;
+        Random rnd = new Random(0);
+        for (int t =0; t<trials; t++){
+            //laver random square matrice med [n,n]
+            matrix A = new matrix(n,n);
+            for(int i =0 ; i<n; i++){
+                for(int j=i; j< n; j++){
+                    A[i,j] = A[j,i] = rnd.NextDouble()*20-10;
+                    }
+                }
+
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+
+            (matrix Q, matrix R) = decomp(A);
+
+            timer.Stop();
+            time += timer.Elapsed.TotalMilliseconds ;
+            }
+        time /= trials;
+        Console.Error.WriteLine($"Matrix size:{n}, Time taken for diagonalization: {time} ms");
+        Console.Write($"{n} {time}\n");
+    }
+
 } //class QRGS

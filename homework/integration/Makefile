@@ -1,6 +1,5 @@
 mat_lib = ../presets
 QR_lib = ../linear-equations
-JCOBI = ../EVD/jacobi.cs
 
 # $@ er target, dvs det før : i din lille kode
 
@@ -14,18 +13,21 @@ default : main.exe mainB.exe erf.png out.data.txt
 erf.png: out.data.txt erf.gpi
 	gnuplot -e "load 'erf.gpi'"
 
-out.data.txt: main.exe mainB.exe
+out.data.txt: main.exe mainB.exe mainC.exe
 	(mono main.exe > out.data.txt 2> log)
 	(mono mainB.exe >> out.data.txt 2>> log)
+	(mono mainC.exe >> out.data.txt 2>> log)
 
-main.exe : main.cs integration.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
+main.exe : main.cs integration.dll matrixlib.dll vector.dll linear.dll; $(MKEXE)
 
-mainB.exe : mainB.cs integration.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
+mainB.exe : mainB.cs integration.dll matrixlib.dll vector.dll linear.dll; $(MKEXE)
+
+mainC.exe : mainC.cs integration.dll matrixlib.dll vector.dll linear.dll; $(MKEXE)
+
+
+
 
 integration.dll: integration.cs matrixlib.dll vector.dll linear.dll; $(MKLIB)
-
-
-jacobi.dll: $(JCOBI) matrixlib.dll vector.dll linear.dll; $(MKLIB)
 
 linear.dll : $(QR_lib)/main.cs matrixlib.dll vector.dll; $(MKLIB)
 

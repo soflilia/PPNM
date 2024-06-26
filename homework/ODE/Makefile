@@ -9,7 +9,7 @@ LIBS = $(addprefix -reference:,$(filter %.dll,$^))
 MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE) 
 MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 
-default : sin_cos.png pendul.png LK.png motion.png
+default : sin_cos.png pendul.png LK.png motion.png threebody.png
 
 #opg a) u'' = -u
 sin_cos.png: out.data.txt sin_cos.gpi
@@ -29,12 +29,15 @@ out.data.txt: main.exe
 motion.png: outB.txt motion.gpi
 	gnuplot -e "load 'motion.gpi'"
 
+threebody.png: outB.txt threebody.gpi
+	gnuplot -e "load 'threebody.gpi'"
+
 outB.txt: mainB.exe
-	mono $< >$@ 2>log
+	mono $< >$@ 
 
 mainB.exe : mainB.cs ode.dll quadspline.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
 
-main.exe : main.cs ode.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)m
+main.exe : main.cs ode.dll matrixlib.dll vector.dll linear.dll jacobi.dll; $(MKEXE)
 
 ode.dll: ode.cs matrixlib.dll vector.dll linear.dll quadspline.dll; $(MKLIB)
 

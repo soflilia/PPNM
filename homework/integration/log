@@ -15,3 +15,21 @@ Compared to scipy.qud in python: 231
 We have the normal integration counted: 8604 and its value is -3.99991705899915
 We have the transformed integration counted: 96 and its value is -3.99987385646141
 Compared to scipy.qud in python: 315
+
+ 
+OPG C: 
+Infinite integration of 1/x² on [1, inf] evaluates 4 times and its value is 1 with error 1.11022302462516E-16 
+Scipy.integrate.quad has value = 1.0 and error = 1.11-14 and evals = 15
+
+
+Infinite integration of 1/x² on [-inf, -1] evaluates 4 times and its value is 1 with error 1.11022302462516E-16 
+Scipy.integrate.quad has value = 1.0 and error = 1.11-14 and evals = 15
+
+
+Infinite integration of exp(-x²) on [-inf, 0] evaluates 32 times and its value is 0.88621864482796 with error 0.0011857481944588 
+Scipy.integrate.quad has value = 0.8862.. and error = 7.10-09 and evals = 135
+
+
+Infinite integration of exp(-x²) on [-inf, inf] evaluates 72 times and its value is 1.77269010023488 with error 0.00194967017054797 
+Scipy.integrate.quad has value = 1.7724.. and error = 1.42-08 and evals = 270
+Scipy is more accurate but evaluates more times.

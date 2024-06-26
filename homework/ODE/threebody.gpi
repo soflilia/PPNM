@@ -1,0 +1,12 @@
+set terminal png background "white" ; \
+set output "threebody.png";\
+set xrange[-1.5*1.61: 1.5*1.61]
+set yrange[-1.5:1.5]
+set grid 
+
+    
+plot "outB.txt" index 3 using 1:2 with lines title "object 1" lw 3\
+    ,"outB.txt" index 3 using 3:($4+1) with lines title "object 2" lw 3\
+    ,"outB.txt" index 3 using 5:($6-1) with lines title "object 2" lw 3\
+
+

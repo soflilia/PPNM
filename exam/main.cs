@@ -6,7 +6,8 @@ using static System.Console;
 
 class main{
 static void Main(){
-        // initialiser en xs og ys
+
+        // initialiser en xs og ys hvor y(x) = cos(x)
         double [] xs = {0,1,2,3,4,5,6,7,8,9};
         double [] ys = new double [xs.Length];
         for(int i=0; i<xs.Length; i++){
@@ -15,21 +16,23 @@ static void Main(){
 		    Write($"{xs[i]} {ys[i]}\n");
 	        }
 	    Write("\n\n");
-        //Initialising cubic spline med cos(x)
+        //Initialising cubic subspline med cos(x)
         cubic_subspline cubic_init  = new cubic_subspline(xs,ys);
         vector p_init = cubic_init.p;
+        //Mine derivative punkter i graf pi
         for(int i = 0; i<p_init.size; i++){
             Write($"{xs[i]} {p_init[i]}\n");
         }
         Write($"\n\n");
+        // graf for cubic subspline 
         for (double z =0.01; z<9; z+= 1.0/12 ){
             Write($"{z} {cubic_init.evaluate(z)} {cubic_init.derivative(z)} {cubic_init.integral(z)}\n");
         }
         Write($"\n\n");
 
-        //....................TEST PÅ VÆRRE FUNKTIONER END COS:.............. //
+        //....................TEST PÅ 'VÆRRE' FUNKTIONER END COS(x).............. //
 
-        //OUTLIER FUNKTION : f(x) =  2/x pånær x = 2 hvor f(x) = 5
+        //OUTLIER FUNKTION : f(x) =  2/x, pånær x = 2, hvor f(x) = 5
         double[] xs_outlier = {1, 1.3, 1.6, 1.8, 1.9, 2, 2.05,  2.1, 2.5,   3, 4};
         double[] ys_outlier = new double[xs_outlier.Length];
         for(int i=0; i<xs_outlier.Length; i++){
@@ -38,7 +41,7 @@ static void Main(){
 		    Write($"{xs_outlier[i]} {ys_outlier[i]}\n");
 	        }
         Write($"\n\n");
-        //Initialising cubic spline
+        //Initialising cubic subspline
         cubic_subspline cubic_outlier  = new cubic_subspline(xs_outlier,ys_outlier);
         vector p_outlier= cubic_outlier.p;
         for(int i = 0; i<p_outlier.size; i++){
@@ -60,7 +63,7 @@ static void Main(){
 		    Write($"{xs_disc[i]} {ys_disc[i]}\n");
 	        }
         Write($"\n\n");
-        //Initialising cubic spline
+        //Initialising cubic subspline
         cubic_subspline cubic_disc  = new cubic_subspline(xs_disc,ys_disc);
         vector p_disc= cubic_disc.p;
         for(int i = 0; i<p_disc.size; i++){
