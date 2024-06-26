@@ -44,7 +44,7 @@ public class MC{
 
         int N_2 = 1000000;
         var (result_2,error_2) = new MonteCarlo().plainmc(cosin,a_2,b_2,N_2);
-        Error.Write($"Result with N={N_2}: {result_2}, Error: {error_2}\n");
+        Error.Write($"Cos function result with N={N_2}: {result_2}, Error: {error_2}\n");
 
 
         //OPG B

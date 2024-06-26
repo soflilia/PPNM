@@ -1,5 +1,5 @@
-Result with N=1000000: 3.140312, Error: 0.00164307289633053
+Result with N=1000000: 3.139688, Error: 0.00164350578418696
 The actual error is larger than 1/sqrt(N) for small N,
 then converges towards 1/sqrt(N) for larger N>10 000 
-Result with N=1000000: 1.39140429044981, Error: 0.0095477549012324
+Cos function result with N=1000000: 1.37839809929703, Error: 0.00486877663345321
 Result with quasi random sequence N=1000000: 3.141552, Error: 2.3999999999802E-05

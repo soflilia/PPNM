@@ -10,7 +10,7 @@ public class MonteCarlo{
         for(int i=0;i<dim;i++){V*=b[i]-a[i];}
         double sum=0,sum2=0;
         var x=new vector(dim);
-        var rnd=new Random();
+        var rnd=new Random(1);
         for(int i=0;i<N;i++){
             for(int k=0;k<dim;k++){x[k]=a[k]+rnd.NextDouble()*(b[k]-a[k]);}
             double fx=f(x); sum+=fx; sum2+=fx*fx;
@@ -70,7 +70,8 @@ public class MonteCarlo{
         return halton;
     }
 
-    public static Str_sampling(Func<vector,double> f,vector a,vector b, int N, int nmin){
+/*
+    public static void Str_sampling(Func<vector,double> f,vector a,vector b, int N, int nmin){
         if (N<=nmin){
             var (result, error) = plainmc(f,a,b,N);
             return (result,error);
@@ -84,4 +85,5 @@ public class MonteCarlo{
 
         
     }
+    */
 }
