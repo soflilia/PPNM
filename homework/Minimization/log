@@ -1,7 +1,34 @@
+OPG A...
+
 Computing minima at start point = (2,3)...
-Rosenbrucks function: n = 15 iterations, value = 2.54312672078964E-10
-(x,y) = (1.00001583944688,1.00003149408804)
-Himmelblau function: n = 6 iterations, value = 3.39504799952034E-14
-(x,y) = (2.99999996754282,2.00000002738499)
-My values are: n = 400 iterations, value = 26.8695117786802
-and the params are m= 125.972186963174, gamma= 2.08633353388006 A = 9.87622747379793
+Rosenbrucks function: n = 15 iterations, value = 1.06067500736637E-11
+(x,y) = (1.00000249914903,1.00000478947414)
+Himmelblau function: n = 6 iterations, value = 3.2032178001078E-13
+(x,y) = (2.9999999021735,2.0000000211443)
+
+
+OPG B...
+
+My values for the Breit Wigner fit are: n = 14 iterations, value = 26.8695117788866
+and the params are m= 125.972183995321, gamma= 2.08633190463958 A = 9.87621961682271
+
+
+OPG C... NOW WITH CENTRAL DIFFERENTIATION
+
+Computing minima at start point = (2,3)...
+Rosenbrocks central:
+Rosenbrucks function: n = 14 iterations, value = 6.38859497101779E-13
+(x,y) = (1.00000079731643,1.00000158902458)
+central: 4.7133 ms 
+forward: 20.6179 ms 
+Himmelblau central:
+Himmelblau function: n = 6 iterations, value = 1.75141858859541E-15
+(x,y) = (2.99999999750608,2.00000001103989)
+central: 0.075 ms 
+forward: 0.1634 ms 
+
+
+Conclusion...
+it seems central derivative method is slightly better, because the resulting minima are smaller and thus
+the found values (x,y) must be equaly closer to the true value. We also have a time difference in favour
+of the central algorithm implementation.
