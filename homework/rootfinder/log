@@ -3,5 +3,22 @@ The Himmelblaus function has minima at: x=-3.78 y=-3.28
 The Himmelblaus function has minima at: x=3.58 y=-1.85
 The Himmelblaus function has minima at: x=-2.81 y=3.13
 The Himmelblaus function has minima at: x=3 y=2
-SÅ BEGYNDER OPG B
+
+
+.....OPG B.....
+Udskriver grafer....
 The energy should be E= -0.5
+
+
+.....OPG C.....
+Encoding the quadratic interpolation line-search
+The Himmelblaus function has minima at: x=-3.78 y=-3.28
+The Himmelblaus function has minima at: x=3.58 y=-1.85
+The Himmelblaus function has minima at: x=-2.81 y=3.13
+The Himmelblaus function has minima at: x=3 y=2
+The quadratic linesearch algorithm gives the same results (at 2 decimal precision). Let us see the difference in time:..
+
+Testing on finding all 4 minima in Himmelblau:
+backtracking linesearch: 0.7259 ms 
+;quadratic backtracking linesearch: 0.3109 ms 
+;

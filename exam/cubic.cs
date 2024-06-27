@@ -61,14 +61,6 @@ public class cubic_subspline{
             if (i == xs.size-1) {p[i+2]=2*abc[0]*points[2]+abc[1];}
             p[i+1] = 2*abc[0]*points[1]+abc[1];
 
-            // Display the matrix for debugging
-            /*
-            for (int row = 0; row < 3; row++) {
-                for (int col = 0; col < 3; col++) {
-                    Error.Write($"{A[row, col]}    ");
-                }
-                Error.Write("\n");
-                */
             }
         }
 

@@ -82,7 +82,6 @@ public class MonteCarlo{
         for(int i; i < a.size; i++)
             (res[i],var[i])= plainmc(f,a[i],b[i],nmin);
         }
-
         
     }
     */
